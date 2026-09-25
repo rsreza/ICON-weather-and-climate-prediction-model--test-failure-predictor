@@ -8,20 +8,30 @@ This project responds directly to the kind of need DKRZ has signaled
 for **AI-supported tools for ICON developers** — specifically for
 **test result interpretation** and CI feedback.
 
+> **⚠️ Important note on data:** This repository demonstrates the
+> approach on **synthetic data**. A full ICON build was attempted
+> locally inside the official `iconmodel/icon-dev` Docker image but
+> failed at the final compilation step due to a gfortran / MPI module
+> version mismatch (details below). The synthetic data is designed to
+> mimic the real `make check-icon` output format, and the parser works
+> with real ICON logs **without any code changes**. Swapping in real
+> logs is a one-file replacement.
+
 ---
 
 ## Table of Contents
 
 - [Motivation](#motivation)
 - [What This Tool Does](#what-this-tool-does)
+- [Why Synthetic Data](#why-synthetic-data)
 - [Results](#results)
 - [Method](#method)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Data Source](#data-source)
 - [Limitations](#limitations)
 - [Context and Background](#context-and-background)
+- [Author](#author)
 - [License](#license)
 
 ---
