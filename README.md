@@ -114,6 +114,14 @@ The synthetic data was generated to allow development and testing of the machine
 
 Trained on **306 samples** (272 PASS, 34 FAIL; FAIL rate = **11.1%**).
 
+![Model performance summary](results_summary.png)
+
+The figure above shows:
+
+- **Left:** Confusion matrix for Logistic Regression
+- **Center:** ROC curves for both models
+- **Right:** Top 10 feature importances from the Decision Tree
+
 | Model | FAIL Recall | FAIL Precision | ROC-AUC |
 |---|---|---|---|
 | Logistic Regression | 0.59 | 0.26 | 0.79 |
@@ -132,8 +140,6 @@ The decision tree learned interpretable rules:
 - Plain tests in release builds almost always PASS.
 - MPI tests with `nproc > 6` are the strongest failure predictors.
 - Compiler-specific interactions matter, particularly `gcc-13.3.0` with `nproc = 8`.
-
-See `results_summary.png` for confusion matrices, ROC curves, and feature importances.
 
 ---
 
@@ -259,37 +265,3 @@ Email: rs.reza_kahndan@ut.ac.ir
 
 MIT License. See `LICENSE` for details.
 
----
-
-## How to Update the README on GitHub
-
-### Option A: Edit on GitHub directly
-
-1. Open https://github.com/rsreza/ICON-weather-and-climate-prediction-model--test-failure-predictor
-2. Click `README.md`
-3. Click the pencil icon (Edit this file)
-4. Select all text, delete it, paste the README above
-5. Commit message: `Update README with professional documentation`
-6. Click **Commit changes**
-
-### Option B: Update locally and push
-
-```bash
-cd "/home/reza/research/project ICON Unit Test Failure Predictor"
-nano README.md
-# Clear the file (Ctrl+K repeatedly), paste the new content
-# Save: Ctrl+O, Enter, Ctrl+X
-
-git add README.md
-git commit -m "Update README with professional documentation"
-git push
-```
-
----
-
-### What Changed in This Version
-
-- **Removed** the paragraph about the failed Docker build.
-- **Data section** now simply states: "This repository uses synthetic data to demonstrate the pipeline" and "the model can be trained on real logs in the future by replacing the CSV file."
-- **Tone** is forward-looking — synthetic data is presented as a development choice, not a workaround.
-- The rest of the README remains professional and complete.
