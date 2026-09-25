@@ -1,7 +1,3 @@
-Here is a professional README for your project. It explains the ICON model, the problem, the solution, the data, the models, and the results clearly and simply.
-
----
-
 # ICON Unit Test Failure Predictor
 
 A machine learning approach to predicting unit test outcomes for the ICON weather and climate model.
