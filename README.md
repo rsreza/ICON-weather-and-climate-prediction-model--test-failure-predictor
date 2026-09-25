@@ -4,15 +4,10 @@ An AI-assisted diagnostic tool that predicts the probability of
 `PASS` / `FAIL` for ICON unit tests based on configuration metadata
 alone.
 
-This project responds directly to the kind of need DKRZ has signaled
-for **AI-supported tools for ICON developers** — specifically for
-**test result interpretation** and CI feedback.
+This project propose a solution for ICON developers (test result interpretation).
 
 > **⚠️ Important note on data:** This repository demonstrates the
-> approach on **synthetic data**. A full ICON build was attempted
-> locally inside the official `iconmodel/icon-dev` Docker image but
-> failed at the final compilation step due to a gfortran / MPI module
-> version mismatch (details below). The synthetic data is designed to
+> approach on **synthetic data**. The synthetic data is designed to
 > mimic the real `make check-icon` output format, and the parser works
 > with real ICON logs **without any code changes**. Swapping in real
 > logs is a one-file replacement.
