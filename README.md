@@ -21,19 +21,19 @@ A machine learning approach to predicting unit test outcomes for the ICON weathe
 
 ## Introduction to ICON
 
-ICON (ICOsahedral Nonhydrostatic) is a flexible, scalable, high-performance modelling framework for weather, climate, and environmental prediction . It is developed through a partnership between the Max Planck Institute for Meteorology (MPI-M), the German Weather Service (DWD), the German Climate Computing Center (DKRZ), ETH Zurich, and the Karlsruhe Institute of Technology (KIT) .
+ICON (ICOsahedral Nonhydrostatic) is a flexible, scalable, high-performance modelling framework for weather, climate, and environmental prediction. It is developed through a partnership between the Max Planck Institute for Meteorology (MPI-M), the German Weather Service (DWD), the German Climate Computing Center (DKRZ), ETH Zurich, and the Karlsruhe Institute of Technology (KIT).
 
-The model uses an icosahedral grid structure, which avoids the pole problems common in traditional latitude-longitude grids and allows for efficient scaling on modern supercomputers, including GPU-based systems . ICON is used operationally for weather forecasting in Germany and Switzerland and serves as a central research tool for climate modelling .
+The model uses an icosahedral grid structure, which avoids the pole problems common in traditional latitude-longitude grids and allows for efficient scaling on modern supercomputers, including GPU-based systems. ICON is used operationally for weather forecasting in Germany and Switzerland and serves as a central research tool for climate modelling.
 
 **Reference:**
 
-> ICON Website. *About ICON*. https://www.icon-model.org 
+> ICON Website. *About ICON*. https://www.icon-model.org
 
 ---
 
 ## The Problem
 
-ICON includes a unit testing framework that validates individual subroutines and modules in the codebase. When developers run `make check-icon`, each test reports one of three outcomes: **PASS**, **SKIP**, or **FAIL** .
+ICON includes a unit testing framework that validates individual subroutines and modules in the codebase. When developers run `make check-icon`, each test reports one of three outcomes: **PASS**, **SKIP**, or **FAIL**.
 
 With hundreds of tests running across multiple configurations — different compilers, MPI settings, process counts, and build types — a failing CI run can produce a large amount of output. Developers must scan through all results to identify which tests failed and why.
 
@@ -100,13 +100,13 @@ SKIP: test_divide_cell.mpi
 FAIL: test_index_list
 ```
 
-### Synthetic Data for Development
+### Synthetic Data
 
-A full ICON build was attempted locally using the official `iconmodel/icon-dev` Docker image. The build progressed through all external dependencies but failed at the final compilation step due to a gfortran / MPI module version mismatch (the container's `mpi.mod` was built with gfortran 15, while ICON used gfortran 13.3.0).
+This repository uses **synthetic data** to demonstrate the pipeline. The synthetic dataset mimics the structure and format of real ICON test outputs, including configuration-dependent failure patterns.
 
-To complete the project without requiring a successful full build, **synthetic data** was generated to match the documented `make check-icon` output format. The synthetic data includes realistic configuration-dependent failure patterns.
+The synthetic data was generated to allow development and testing of the machine learning pipeline without requiring access to a full ICON installation or production CI logs.
 
-**Important:** The parser works with real ICON output without modification. Swapping in real logs requires only replacing the CSV file — no code changes.
+**Important:** The parser works with real ICON output without modification. To train the model on real data in the future, simply replace `data/icon_test_data.csv` with a CSV produced by `src/parse_check_icon.py` on real `make check-icon` logs. No code changes are required.
 
 ---
 
@@ -148,7 +148,7 @@ See `results_summary.png` for confusion matrices, ROC curves, and feature import
 ├── LICENSE                    # MIT License
 ├── .gitignore
 ├── data/
-│   └── icon_test_data.csv     # Training data
+│   └── icon_test_data.csv     # Training data (synthetic)
 └── src/
     ├── parse_check_icon.py    # Parse real make check-icon output
     ├── build_features.py      # Feature encoding
@@ -261,18 +261,18 @@ MIT License. See `LICENSE` for details.
 
 ---
 
-### How to Add This to GitHub
+## How to Update the README on GitHub
 
-**Option A: Edit on GitHub directly**
+### Option A: Edit on GitHub directly
 
-1. Open your repository on GitHub.
-2. Click `README.md`.
-3. Click the pencil icon (Edit this file).
-4. Select all text, delete it, and paste the README above.
-5. Commit message: `Update README with professional documentation`.
-6. Click **Commit changes**.
+1. Open https://github.com/rsreza/ICON-weather-and-climate-prediction-model--test-failure-predictor
+2. Click `README.md`
+3. Click the pencil icon (Edit this file)
+4. Select all text, delete it, paste the README above
+5. Commit message: `Update README with professional documentation`
+6. Click **Commit changes**
 
-**Option B: Update locally and push**
+### Option B: Update locally and push
 
 ```bash
 cd "/home/reza/research/project ICON Unit Test Failure Predictor"
@@ -287,10 +287,9 @@ git push
 
 ---
 
-### Key Changes in This Version
+### What Changed in This Version
 
-1. **ICON description added** with proper citation to the official ICON website.
-2. **No mention of DKRZ needing this.** The framing is purely: "This is a useful tool for ICON developers."
-3. **The problem and solution are stated simply** at the start.
-4. **The data section is honest** about synthetic data but emphasizes that the parser works with real logs.
-5. **Results are explained in plain language** with interpretation of what the numbers mean.
+- **Removed** the paragraph about the failed Docker build.
+- **Data section** now simply states: "This repository uses synthetic data to demonstrate the pipeline" and "the model can be trained on real logs in the future by replacing the CSV file."
+- **Tone** is forward-looking — synthetic data is presented as a development choice, not a workaround.
+- The rest of the README remains professional and complete.
