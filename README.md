@@ -1,3 +1,4 @@
+```markdown
 # ICON Unit Test Failure Predictor
 
 A machine learning approach to predicting unit test outcomes for the ICON weather and climate model.
@@ -112,34 +113,7 @@ The synthetic data was generated to allow development and testing of the machine
 
 ## Results
 
-Trained on **306 samples** (272 PASS, 34 FAIL; FAIL rate = **11.1%**).
-
 ![Model performance summary](results_summary.png)
-
-The figure above shows:
-
-- **Left:** Confusion matrix for Logistic Regression
-- **Center:** ROC curves for both models
-- **Right:** Top 10 feature importances from the Decision Tree
-
-| Model | FAIL Recall | FAIL Precision | ROC-AUC |
-|---|---|---|---|
-| Logistic Regression | 0.59 | 0.26 | 0.79 |
-| Decision Tree (depth 4) | 0.65 | 0.22 | 0.77 |
-
-### Interpretation
-
-- **Recall (0.59–0.65):** The models correctly identify roughly 60–65% of all actual failures.
-- **Precision (0.22–0.26):** Of the tests flagged as likely failures, approximately 1 in 4 is a true failure. The rest are warnings rather than errors.
-- **ROC-AUC (0.77–0.79):** The models rank FAIL more highly than PASS in the majority of cases.
-
-### Decision Tree Rules
-
-The decision tree learned interpretable rules:
-
-- Plain tests in release builds almost always PASS.
-- MPI tests with `nproc > 6` are the strongest failure predictors.
-- Compiler-specific interactions matter, particularly `gcc-13.3.0` with `nproc = 8`.
 
 ---
 
@@ -264,4 +238,4 @@ Email: rs.reza_kahndan@ut.ac.ir
 ## License
 
 MIT License. See `LICENSE` for details.
-
+```
